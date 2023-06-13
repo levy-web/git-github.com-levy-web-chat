@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import { userAgent } from "next/server";
 import { useNavigate, Link } from "react-router-dom";
 
 const Signup = () => {
