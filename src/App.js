@@ -1,24 +1,32 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ChatEngine } from 'react-chat-engine';
 import ChatFeed  from './components/ChatFeed';
 import LoginForm from './components/LoginForm';
+import Signup from './components/Signup';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 import './App.css';
 
 const App = () => {
 
-    if(!localStorage.getItem('username')) return <LoginForm />
-
 
 	return (
-		<ChatEngine
-			height='100vh'
-			userName={localStorage.getItem('username')}
-			userSecret={localStorage.getItem('password')}
-			projectID='7103f433-343f-400b-a01e-bbe3e5cff450'
-            renderChatFeed = {(chatAppProps) => < ChatFeed {...chatAppProps}/>  }
-		/>
+		<BrowserRouter>
+		<Routes>
+			<Route path='/' element={
+				<ProtectedRoute><ChatEngine
+					height='100vh'
+					userName={localStorage.getItem('username')}
+					userSecret={localStorage.getItem('password')}
+					projectID='6837c312-68d6-46d9-a575-087a80256305'
+					renderChatFeed = {(chatAppProps) => < ChatFeed {...chatAppProps}/>  }
+				/></ProtectedRoute>}/>
+			<Route path="/signup" element={<Signup/>}/>
+			<Route path="/login" element={<LoginForm/>}/>
+		</Routes>
+		</BrowserRouter>
 	);
 } 
 export default App;

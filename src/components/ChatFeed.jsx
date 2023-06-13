@@ -30,7 +30,7 @@ const ChatFeed = (props) => {
             const isMyMessage = userName === message.sender.username;
 
             return (
-                <div key={'msg_${index}'} style={{width: '100%'}}>
+                <div key={`msg_${index}`} style={{width: '100%'}}>
                     <div className="message-block">
                         {
                             isMyMessage
@@ -54,14 +54,14 @@ const ChatFeed = (props) => {
         } )
     }
 
-    if(!chat) return 'loading...'
+    if(!chat) return <h3 className="no-chats-center">create new chats or request to be added in group chats.</h3>
 
     return(
         <div className="chat-feed">
             <div className="chat-title-container">
                 <div className="chat-title">{chat.title}</div>
                 <div className="chat-subtitle">
-                    {chat.people.map((person) => ` ${ person.person.username} `)}
+                    {chat.people.map((person) => <span key={person.person.username}>{` ${ person.person.username}, `}</span>)}
                 </div>
             </div>
             {renderMessages()}

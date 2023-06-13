@@ -1,32 +1,41 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+import { userAgent } from "next/server";
+import { useNavigate, Link } from "react-router-dom";
+
+const Signup = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate()
+    const navigate  = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const authObject = {'Project-ID': "6837c312-68d6-46d9-a575-087a80256305", 'User-Name': username, 'User-secret': password}
+        const authObject = {'Private-Key': "0507a78c-305e-4d04-bd23-e19921c0a0e3"}
+        const formData = {"username":username, "secret":password}
 
         try {
         //username / password=> chatengine-> give message
 
-            await axios.get('https://api.chatengine.io/chats', {headers:authObject});
-            localStorage.setItem('username', username);
-            localStorage.setItem('password', password);
+            await axios.post(
+                'https://api.chatengine.io/users',
+                formData, 
+                {headers:authObject} )
+                // .then(r=>{
+                //     if(r.status === 201){
+                //         navigate('/login')
+                //     }})
+                navigate('/login')
 
-            navigate('/')
+            // window.location.reload();
 
         //works out -> logged in
   
         } catch (error) {
         // error--> try new username.
-        setError('ooops!! incorrect credentials')
+        setError('ooops!! invalid username')
             
         }
 
@@ -40,14 +49,14 @@ const LoginForm = () => {
                 <form onSubmit={handleSubmit}>
                     <input type="text" value = {username} onChange = {(e) => setUsername(e.target.value) } className = "input" placeholder="Username" required />
                     <input type="password" value = {password} onChange = {(e) => setPassword(e.target.value) } className = "input" placeholder="Password" required />
+                    {/* <input type="password" value = {password} onChange = {(e) => setPassword(e.target.value) } className = "input" placeholder="Confirm Password" required /> */}
                     <div align = "center">
                         <button type="submit" className="button">
-                            <span>Start Chatting</span>
-
+                            <span>Create Account</span>
                         </button>
 
                     </div>
-                    <p className='link-signup-p'> Dont have a username? <Link to='/signup' className="link-signup">create account</Link></p>
+                    <p className='link-signup-p'> Have a username? <Link to='/login' className="link-signup">Login</Link></p>
                     <h2 className="error">{error}</h2>
 
                 </form>
@@ -57,4 +66,4 @@ const LoginForm = () => {
         </div>
     );
 }
-export default LoginForm;    
+export default Signup;

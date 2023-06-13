@@ -294,3 +294,18 @@
     text-align: center;
     margin-top: 20px;
   }
+
+  .link-signup{
+    text-decoration: none;
+    color: brown;
+  }
+  .link-signup-p{
+    text-align: center;
+    font-size: 22px;
+    margin: 5px;
+  }
+  .no-chats-center{
+    text-align: center;
+    margin-top: 20px;
+    color: #7554a0;
+  }
