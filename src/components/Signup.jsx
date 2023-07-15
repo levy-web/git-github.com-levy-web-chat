@@ -12,7 +12,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const authObject = {'Private-Key': "0507a78c-305e-4d04-bd23-e19921c0a0e3"}
+        const authObject = {'Private-Key': "b8ff9591-2a00-4fb1-ab2a-570c194a2a67"}
         const formData = {"username":username, "secret":password}
 
         try {

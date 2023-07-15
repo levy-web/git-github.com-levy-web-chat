@@ -20,7 +20,7 @@ const App = () => {
 					height='100vh'
 					userName={localStorage.getItem('username')}
 					userSecret={localStorage.getItem('password')}
-					projectID='6837c312-68d6-46d9-a575-087a80256305'
+					projectID='eabb33a1-8ce6-4ff0-a486-716b2e20e18a'
 					renderChatFeed = {(chatAppProps) => < ChatFeed {...chatAppProps}/>  }
 				/></ProtectedRoute>}/>
 			<Route path="/signup" element={<Signup/>}/>
